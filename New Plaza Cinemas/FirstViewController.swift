@@ -48,11 +48,12 @@ class FirstViewController: UIViewController {
     
     func updateEvents(json : JSON) {
         
-        if let eventsResult = json["averages"]["day"].double {
+        if let eventsResult = json["items"][0]["summary"].string {
 //            bitcoinPriceLabel.text = symbol + String(eventsResult)
             print(eventsResult)
         } else {
-            print("not found :(")
+            print("structure not found :((((((")
+            print(json)
         }
     }
     
