@@ -14,6 +14,7 @@
 		917BC6A12144C57500F0585A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 917BC6A02144C57500F0585A /* Assets.xcassets */; };
 		917BC6A42144C57500F0585A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 917BC6A22144C57500F0585A /* LaunchScreen.storyboard */; };
 		917BC6AC2144CA4100F0585A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BC6AB2144CA4100F0585A /* Secrets.swift */; };
+		91C528E42144D38A00FDB0F7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C528E32144D38A00FDB0F7 /* Data.swift */; };
 		CD653B5D5488EE302FC18D4A /* Pods_New_Plaza_Cinemas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38A96B641CD1E7BD571F45B /* Pods_New_Plaza_Cinemas.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		917BC6A32144C57500F0585A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		917BC6A52144C57500F0585A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		917BC6AB2144CA4100F0585A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		91C528E32144D38A00FDB0F7 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C38A96B641CD1E7BD571F45B /* Pods_New_Plaza_Cinemas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_New_Plaza_Cinemas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				917BC6A02144C57500F0585A /* Assets.xcassets */,
 				917BC6A22144C57500F0585A /* LaunchScreen.storyboard */,
 				917BC6A52144C57500F0585A /* Info.plist */,
+				91C528E32144D38A00FDB0F7 /* Data.swift */,
 			);
 			path = "New Plaza Cinemas";
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91C528E42144D38A00FDB0F7 /* Data.swift in Sources */,
 				917BC69C2144C57400F0585A /* SecondViewController.swift in Sources */,
 				917BC6AC2144CA4100F0585A /* Secrets.swift in Sources */,
 				917BC6982144C57400F0585A /* AppDelegate.swift in Sources */,

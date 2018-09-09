@@ -20,9 +20,62 @@ class FirstViewController: UIViewController {
         finalURL = baseURL + APIkey
         print("finalURL: " + finalURL)
         getEvents(url: finalURL)
+        
+        //MARK: - Networking (JSONDecoder Method) - FREE EVENTS
+        /***************************************************************/
+        
+        var myURL = URL(string: "https://data.cityofnewyork.us/resource/jxsh-uewe.json?&date=2013-09-10")!
+
+        var request = URLRequest(url: myURL)
+//        let task = URLSession.shared.dataTask(with: request) {
+//            data, response, error in
+//            guard let data = data else { return }
+//            do {
+//                let decoder = JSONDecoder()
+//                let theData = try decoder.decode([MyData].self, from: data)
+//                print("****************** Hi FREE EVENTS!")
+//                print(theData)
+//                for index in theData.indices {
+//                    print(theData[index].title!)
+//                }
+//            } catch let err {
+//                print("Err!(1)",err)
+//            }
+//
+//        }
+//        task.resume()
+        
+        
+        //MARK: - Networking (JSONDecoder Method) - GOOGLE CALENDAR
+        /***************************************************************/
+        
+        myURL = URL(string: finalURL)!
+
+        request = URLRequest(url: myURL)
+        let taskNPC = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            guard let data = data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let theData = try decoder.decode(Welcome.self, from: data)
+                print("****************** Hi GOOGLE CAL!")
+                print(theData)
+                for index in theData.items.indices {
+                    print(theData.items[index].summary)
+                    print(theData.items[index].description)
+                    print(theData.items[index].location)
+                    print(theData.items[index].start)
+                }
+            } catch let err {
+                print("Err!(2)",err)
+            }
+            
+        }
+        taskNPC.resume()
+        
     }
     
-    //MARK: - Networking
+    //MARK: - Networking (Alamofire Method)
     /***************************************************************/
     
     func getEvents(url: String) {
@@ -31,7 +84,7 @@ class FirstViewController: UIViewController {
             .responseJSON { response in
                 if response.result.isSuccess {
                     
-                    print("Sucess! Got the calendar events")
+                    print("Success! Got the calendar events with Alamofire")
                     let eventsJSON : JSON = JSON(response.result.value!)
                     
                     self.updateEvents(json: eventsJSON)
