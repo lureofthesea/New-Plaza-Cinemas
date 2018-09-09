@@ -14,17 +14,6 @@ struct MyData: Codable {
     let event_id: String?
 }
 
-//struct MyDataNPC : Codable {
-//
-//    struct Items : Codable {
-//        let summary : String?
-//        let description : String?
-//        let location : String?
-//        //    let start : [Date?]
-//    }
-//
-//    var items : Items
-
 struct Welcome: Codable {
     let kind, etag, summary, description: String
     let updated, timeZone, accessRole: String
@@ -37,7 +26,7 @@ struct Item: Codable {
     let htmlLink, created, updated, summary: String
     let description, location: String
     let creator: Creator
-    let start, end: End
+    let start, end: DateTime
     let iCalUID: String
     let sequence: Int
 }
@@ -46,6 +35,6 @@ struct Creator: Codable {
     let email, displayName: String
 }
 
-struct End: Codable {
+struct DateTime: Codable {
     let dateTime: String
 }
