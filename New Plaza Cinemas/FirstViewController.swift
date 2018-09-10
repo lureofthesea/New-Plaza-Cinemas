@@ -9,20 +9,39 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var eventsArray = [Item]()
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventsArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
+        cell.textLabel?.text = self.eventsArray[indexPath.row].summary
+//        cell.textLabel?.text = "\( Int(slider.value) * (indexPath.row+1))"
 
+        return cell
+    }
+    
+    @IBOutlet weak var listingsTableView: UITableView!
+    
     let baseURL = "https://www.googleapis.com/calendar/v3/calendars/hhhirgpl00dq437bv5oqd93h40%40group.calendar.google.com/events?key="
     var finalURL = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        listingsTableView.delegate = self
+        listingsTableView.dataSource = self
+        
         finalURL = baseURL + APIkey
         print("finalURL: " + finalURL)
         getEvents(url: finalURL)
         
         
-        //MARK: - Networking (JSONDecoder Method) - GOOGLE CALENDAR
+        //MARK: - Networking & JSON Parsing (JSONDecoder Method) - GOOGLE CALENDAR
         /***************************************************************/
         
         let myURL = URL(string: finalURL)!
@@ -33,16 +52,20 @@ class FirstViewController: UIViewController {
             do {
                 let decoder = JSONDecoder()
                 let theData = try decoder.decode(Welcome.self, from: data)
-                print("****************** Hi GOOGLE CAL via JSONDecoder!")
+                print("************ Hi GOOGLE CAL via JSONDecoder!")
                 print(theData)
                 for index in theData.items.indices {
                     print(theData.items[index].summary)
                     print(theData.items[index].description)
                     print(theData.items[index].location)
                     print(theData.items[index].start)
+//                    var item: Item?
+//                    item?.summary = theData.items[index].summary
+//                    item?.start = theData.items[index].start
+//                    self.eventsArray.append(item!)
                 }
             } catch let err {
-                print("Err!(2)",err)
+                print("Decoding Error!(2)",err)
             }
             
         }
@@ -71,7 +94,7 @@ class FirstViewController: UIViewController {
         }
     }
     
-    //MARK: - JSON Parsing
+    //MARK: - JSON Parsing (Alamofire Method)
     /***************************************************************/
     
     func updateEvents(json : JSON) {

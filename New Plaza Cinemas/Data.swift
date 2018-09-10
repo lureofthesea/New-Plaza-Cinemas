@@ -23,10 +23,10 @@ struct Welcome: Codable {
 
 struct Item: Codable {
     let kind, etag, id, status: String
-    let htmlLink, created, updated, summary: String
-    let description, location: String
+    var htmlLink, created, updated, summary: String
+    var description, location: String
     let creator: Creator
-    let start, end: DateTime
+    var start, end: DateTime
     let iCalUID: String
     let sequence: Int
 }
